@@ -3,6 +3,9 @@
 }
 .nav-link{
     color: white !important;
+    display: flex !important;
+    align-items: center !important;
+    
 }
 .navbar-brand{
     color: white !important;
@@ -10,9 +13,10 @@
 }
 .nav-item{
     margin: 0 10px !important;
-    display: flex !important;
-    align-items: center !important;
+    
 }
-.fa-heart, .fa-right-to-bracket{
+.fa-right-to-bracket{
     color: white !important;
+    margin-left: 5px;
+    
 }
