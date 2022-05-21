@@ -26,7 +26,7 @@ const Navbar = () => {
             <li className="nav-item">
                 
               <Link className="nav-link active" aria-current="page" to="/logIn">
-            <span>Log In</span> <i class="fa-solid fa-right-to-bracket"></i>
+            <span>Log In</span> <i className="fa-solid fa-right-to-bracket"></i>
               </Link>
 
                 
