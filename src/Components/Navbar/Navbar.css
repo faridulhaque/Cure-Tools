@@ -1,0 +1,18 @@
+.bg-light{
+    background-color: rgb(235,87,87) !important;
+}
+.nav-link{
+    color: white !important;
+}
+.navbar-brand{
+    color: white !important;
+    margin-left: 20px !important;
+}
+.nav-item{
+    margin: 0 10px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+.fa-heart, .fa-right-to-bracket{
+    color: white !important;
+}
