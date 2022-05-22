@@ -1,30 +1,31 @@
-.register-main{
+.login-main{
     display: flex;
+    align-items: center;
     width: 90%;
     margin-left: 5%;
-    margin-right: 5%;
-    align-items: center;
     margin-top: 50px;
 }
-.form-container{
+.login-form-container{
+    
     margin-left: 50px;
-    padding: 50px;
+    padding: 50px 50px;
     box-sizing: border-box;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     
 }
-.input-wrapper{
+.login-input-wrapper{
     margin-top: 40px;
     width: 300px;
 }
-.reg-input{
+.login-input{
     width: 100%;
     outline: none;
     border: none;
     border-bottom: 2px solid rgb(235,87,87);
     background-color: white;
 }
-.reg-button{
+
+.login-button{
     margin-top: 40px;
     width: 100%;
     height: 40px;
@@ -32,15 +33,7 @@
     color: white;
     border: none;
 }
-.reg-label{
+.login-label{
     margin-bottom: 10px;
     
-}
-.g-button{
-    width: 100%;
-    margin-top: 20px;
-    color: rgb(235, 87, 87);
-    height: 40px;
-    border: 1px solid rgb(235, 87, 87);
-    background-color: white;
 }
