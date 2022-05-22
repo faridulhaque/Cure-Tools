@@ -1,0 +1,55 @@
+.cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.single-card {
+
+    width: 250px;
+    height: 700px;
+    position: relative;
+    box-sizing: border-box;
+    
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.img-tool {
+    width: 100%;
+
+}
+
+.tool-name {
+    text-align: center;
+    margin-top: -10px;
+}
+
+.btn-tool-wrapper {
+    position: relative;
+    top: -30px;
+    display: flex;
+    justify-content: center;
+}
+.btn-tool{
+    width: 50px;
+    height: 60px;
+    border-radius:50%;
+    background-color: rgb(235,87,87);
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.fa-plus{
+    color: white;
+}
+
+
+.quantities-tool-item{
+    text-align: center;
+
+}
+.quantities-tool-value{
+    text-align: center;
+    font-weight: bold;
+    margin-top: -10px;
+}
