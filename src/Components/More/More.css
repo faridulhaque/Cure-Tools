@@ -1,0 +1,18 @@
+.more-link{
+    color: black !important;
+}
+.offcanvas{
+    background-color: rgb(235,87,87);
+    width: 200px !important;
+}
+.fa-sliders{
+    color: white !important;
+    font-size: 24px;
+}
+.button-toggle-sidebar{
+    background-color: rgb(235, 87, 87) !important;
+    border: none;
+    position: absolute;
+    top: 16px;
+    
+}

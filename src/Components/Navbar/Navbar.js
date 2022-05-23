@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand ms-5" to="/">
           Cure Tools
         </Link>
         <button
@@ -39,12 +39,14 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav m-auto me-5 mb-2 mb-lg-0">
+          <li className="nav-item">
             {
               user?.uid && <Link className="nav-link" aria-current="page" to="/more">
               <span>More</span>{" "}
               <i class="fa-solid fa-arrow-up-right-dots"></i>
             </Link>
             }
+            </li>
             <li className="nav-item">
               {user?.uid ? (
                 <a className="nav-link" onClick={handleLogout}>
