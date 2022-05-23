@@ -10,7 +10,7 @@ import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 
 const provider = new GoogleAuthProvider();
 
 const LogIn = () => {
-  const { user, loading } = useTheUser();
+  
   
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState("");

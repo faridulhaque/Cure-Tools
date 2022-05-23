@@ -1,7 +1,12 @@
 .cards {
-    display: flex;
+    /* display: flex;
+    
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-evenly; */
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
 }
 
 .single-card {

@@ -39,11 +39,17 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav m-auto me-5 mb-2 mb-lg-0">
+            {
+              user?.uid && <Link className="nav-link" aria-current="page" to="/more">
+              <span>More</span>{" "}
+              <i class="fa-solid fa-arrow-up-right-dots"></i>
+            </Link>
+            }
             <li className="nav-item">
               {user?.uid ? (
                 <a className="nav-link" onClick={handleLogout}>
                   <span>Log Out</span>{" "}
-                  <i className="fa-solid fa-right-to-bracket"></i>
+                  <i class="fa-solid fa-power-off"></i>
                 </a>
               ) : (
                 <Link className="nav-link" aria-current="page" to="/logIn">
