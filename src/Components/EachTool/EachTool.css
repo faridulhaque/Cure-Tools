@@ -1,0 +1,92 @@
+.each-tool-main {
+    margin-top: 100px;
+    height: auto;
+    padding-bottom: 50px;
+    margin-bottom: 100px;
+    margin-left: 10%;
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    align-items: center;
+    
+}
+
+.each-tool-single-card {
+
+    width: 250px;
+    height: 600px;
+    margin-top: 50px;
+    box-sizing: border-box;
+
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+}
+
+.img-each-tool {
+    width: 100%;
+
+}
+
+.each-tool-name {
+    text-align: center;
+    margin-top: -10px;
+}
+
+.quantities-each-tool-item {
+    text-align: center;
+
+}
+
+.quantities-each-tool-value {
+    text-align: center;
+    font-weight: bold;
+    margin-top: -10px;
+}
+.each-tool-order{
+    
+    margin-top: 50px;
+    padding: 50px;
+    box-sizing: border-box;
+
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.et-input-wrapper {
+    margin-top: 20px;
+    
+    width: 250px;
+}
+
+.et-label {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.et-input {
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid rgb(235, 87, 87);
+    outline: none;
+    background-color: white;
+}
+.et-text-area{
+    width: 100%;
+    height: 100px;
+    outline: none;
+    border: 0;
+    border-bottom: 2px solid rgb(235, 87, 87);
+    resize: none;
+
+}
+.et-button-submit{
+    width: 100%;
+    color: white;
+    background-color: rgb(235, 87, 87);
+    height: 40px;
+    border: none;
+    border-radius: 3px;
+}

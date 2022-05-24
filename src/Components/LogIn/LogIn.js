@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import pic from "../assets/images/loginPic.png";
 import "./Login.css";
 import gLogo from "../assets/images/Google_icon.png";
@@ -12,7 +12,9 @@ const provider = new GoogleAuthProvider();
 const LogIn = () => {
   
   
+  const location= useLocation();
   const navigate = useNavigate();
+  let from = location.state?.from?.pathname || "/";
   const [loginError, setLoginError] = useState("");
 
   const {
@@ -26,7 +28,7 @@ const LogIn = () => {
       .then((userCredential) => {
         const epUser = userCredential.user;
         console.log(epUser);
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setLoginError(error.message);
@@ -40,8 +42,8 @@ const LogIn = () => {
       const token = credential.accessToken;
       
       const googleUser = result.user;
-      console.log(googleUser);
-      navigate("/");
+      
+      navigate(from, { replace: true });
       
     }).catch((error) => {
       

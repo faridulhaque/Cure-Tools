@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import EachTool from "./Components/EachTool/EachTool";
@@ -12,6 +13,10 @@ import Register from "./Components/Register/Register";
 
 function App() {
   return <div>
+    <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
     <Navbar></Navbar>
     <Routes>
       <Route path="/" element={<Home></Home>}></Route>

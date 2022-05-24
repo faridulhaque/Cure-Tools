@@ -13,7 +13,7 @@ const More = () => {
           data-bs-target="#offcanvasScrolling"
           aria-controls="offcanvasScrolling"
         >
-          <i class="fa-solid fa-sliders"></i>
+          <i className="fa-solid fa-sliders"></i>
         </button>
         <Outlet></Outlet>
       </div>
@@ -22,7 +22,7 @@ const More = () => {
           className="offcanvas offcanvas-start"
           data-bs-scroll="true"
           data-bs-backdrop="false"
-          tabindex="-1"
+          tabIndex="-1"
           id="offcanvasScrolling"
           aria-labelledby="offcanvasScrollingLabel"
         >

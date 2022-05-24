@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
-        <Link className="navbar-brand ms-5" to="/">
+        <Link className="navbar-brand" to="/">
           Cure Tools
         </Link>
         <button
@@ -43,7 +43,7 @@ const Navbar = () => {
             {
               user?.uid && <Link className="nav-link" aria-current="page" to="/more">
               <span>More</span>{" "}
-              <i class="fa-solid fa-arrow-up-right-dots"></i>
+              <i className="fa-solid fa-arrow-up-right-dots"></i>
             </Link>
             }
             </li>
@@ -51,7 +51,7 @@ const Navbar = () => {
               {user?.uid ? (
                 <a className="nav-link" onClick={handleLogout}>
                   <span>Log Out</span>{" "}
-                  <i class="fa-solid fa-power-off"></i>
+                  <i className="fa-solid fa-power-off"></i>
                 </a>
               ) : (
                 <Link className="nav-link" aria-current="page" to="/logIn">

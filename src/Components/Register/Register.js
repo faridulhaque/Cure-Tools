@@ -3,7 +3,7 @@ import "./Register.css";
 import { useForm } from "react-hook-form";
 import pic from "../assets/images/reg-pic.png";
 import gLogo from "../assets/images/Google_icon.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../Firebase/firebase.init";
 
 import {
@@ -14,7 +14,9 @@ import {
 } from "firebase/auth";
 const provider = new GoogleAuthProvider();
 const Register = () => {
+  const location= useLocation();
   const navigate = useNavigate();
+  let from = location.state?.from?.pathname || "/";
 
   // verify the user
   const emailVerify = () => {
@@ -37,7 +39,7 @@ const Register = () => {
         const generalUser = userCredential.user;
         console.log(generalUser);
         emailVerify();
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -53,7 +55,7 @@ const Register = () => {
       const token = credential.accessToken;
       
       const googleUser = result.user;
-      console.log(googleUser);
+      navigate(from, { replace: true });
       
     }).catch((error) => {
       
