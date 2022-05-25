@@ -10,6 +10,9 @@ import Orders from "./Components/NestedRoutes/Orders/Orders";
 import Profile from "./Components/NestedRoutes/Profile/Profile";
 import Review from "./Components/NestedRoutes/Review/Review";
 import Register from "./Components/Register/Register";
+import RequireUser from "./Components/RequireAuth/RequireUser"
+
+
 
 function App() {
   return <div>
@@ -23,12 +26,12 @@ function App() {
       <Route path="/more" element={<More></More>}>
       <Route index element={<Profile></Profile>}></Route>
           <Route path="review" element={<Review></Review>}></Route>
-          <Route path="orders" element={<Orders></Orders>}></Route>
+          <Route path="orders" element={<RequireUser><Orders></Orders></RequireUser>}></Route>
       </Route>
       
       <Route path="/logIn" element={<LogIn></LogIn>}></Route>
       <Route path="/register" element={<Register></Register>}></Route>
-      <Route path="/home/:eachTool" element={<EachTool></EachTool>}></Route>
+      <Route path="/home/:eachTool" element={<RequireUser><EachTool></EachTool></RequireUser>}></Route>
     </Routes>
   </div>
 }

@@ -1,72 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Register.css";
 import { useForm } from "react-hook-form";
 import pic from "../assets/images/reg-pic.png";
 import gLogo from "../assets/images/Google_icon.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuthState, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { auth } from "../Firebase/firebase.init";
 
 import {
   createUserWithEmailAndPassword,
-  GoogleAuthProvider,
   sendEmailVerification,
-  signInWithPopup,
 } from "firebase/auth";
-const provider = new GoogleAuthProvider();
+import useToken from "../hooks/Token/useToken";
+
+// main functional work started
 const Register = () => {
-  const location= useLocation();
-  const navigate = useNavigate();
-  let from = location.state?.from?.pathname || "/";
-
-  // verify the user
-  const emailVerify = () => {
-    sendEmailVerification(auth.currentUser).then(() => {
-      
-    });
-  };
-
-  //getting newUser's data via react form hooks
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [newUser, setNewUser] = useState({});
+  const [token] = useToken(gUser || newUser);
 
-  // create user with firebase
+  const location = useLocation();
+  const navigate = useNavigate();
+  let from = location.state?.from?.pathname || "/";
+
+  // if (newUser || gUser) {
+  //   navigate(from, { replace: true });
+  // }
+
+  // verify the user
+  const emailVerify = () => {
+    sendEmailVerification(auth.currentUser).then(() => {});
+  };
+
+  //getting newUser's data via react form hooks
   const onSubmit = (data) => {
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
-        const generalUser = userCredential.user;
-        console.log(generalUser);
+        const user = userCredential.user;
+
+        setNewUser(user);
         emailVerify();
-        navigate(from, { replace: true });
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
       });
   };
-
-  const signUpWithGooglePopup = () =>{
-    signInWithPopup(auth, provider)
-    .then((result) => {
-      
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      
-      const googleUser = result.user;
-      navigate(from, { replace: true });
-      
-    }).catch((error) => {
-      
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      
-      const email = error.customData.email;
-      
-      const credential = GoogleAuthProvider.credentialFromError(error);
-    });
-  }
 
   return (
     <section className="register-main">
@@ -146,10 +129,7 @@ const Register = () => {
           </div>
         </form>
         <div>
-          <button
-            onClick={signUpWithGooglePopup}
-            className="g-button"
-          >
+          <button onClick={() => signInWithGoogle()} className="g-button">
             <img
               style={{ width: "25px", height: "25px" }}
               src={gLogo}
