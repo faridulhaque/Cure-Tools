@@ -27,7 +27,7 @@ const LogIn = () => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         const epUser = userCredential.user;
-        console.log(epUser);
+        
         navigate(from, { replace: true });
       })
       .catch((error) => {

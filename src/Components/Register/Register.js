@@ -12,6 +12,8 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 import useToken from "../hooks/Token/useToken";
+import { useUpdateProfile } from 'react-firebase-hooks/auth';
+
 
 // main functional work started
 const Register = () => {
@@ -21,11 +23,13 @@ const Register = () => {
     handleSubmit,
   } = useForm();
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   const [newUser, setNewUser] = useState({});
   const [token] = useToken(gUser || newUser);
 
   const location = useLocation();
   const navigate = useNavigate();
+  
   let from = location.state?.from?.pathname || "/";
 
   // if (newUser || gUser) {
@@ -38,8 +42,9 @@ const Register = () => {
   };
 
   //getting newUser's data via react form hooks
-  const onSubmit = (data) => {
-    createUserWithEmailAndPassword(auth, data.email, data.password)
+  const onSubmit = async (data) => {
+    
+    await createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         const user = userCredential.user;
 
@@ -49,6 +54,7 @@ const Register = () => {
       .catch((error) => {
         const errorMessage = error.message;
       });
+      await updateProfile({displayName: data.name});
   };
 
   return (
@@ -73,6 +79,24 @@ const Register = () => {
           </Link>{" "}
         </small>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="input-wrapper">
+            <label htmlFor="name" className="reg-label">
+              Your Name
+            </label>
+            <input
+              className="reg-input"
+              type="text"
+              {...register("name", {
+                required: {
+                  value: true,
+                  message: "Name is required",
+                }
+              })}
+            />
+            <small className="text-danger">
+              {(errors.name?.type === "required" && "Name is required")}
+            </small>
+          </div>
           <div className="input-wrapper">
             <label htmlFor="email" className="reg-label">
               Email
