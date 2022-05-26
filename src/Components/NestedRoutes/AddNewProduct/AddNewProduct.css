@@ -1,0 +1,35 @@
+.addNewProduct-parent{
+    display: flex;
+    justify-content: center;
+}
+.form-wrapper-anp{
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 70px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 50px;
+    height: auto;
+}
+.form-anp{
+    width: 100%;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+}
+.input-group-anp{
+    width: 200px;
+    margin-top: 20px;
+}
+.input-anp{
+    height: 40px;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid rgb(255, 87, 87);
+    outline: none;
+}
+.description-anp{
+    height: 100px;
+    resize: none;
+}

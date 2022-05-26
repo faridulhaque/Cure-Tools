@@ -1,8 +1,11 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./More.css";
+import useUserInfo from "../hooks/useUserInfo/useUserInfo";
 
 const More = () => {
+  const { userInfo } = useUserInfo();
+  // console.log(userInfo);
   return (
     <div>
       <div className="top">
@@ -27,7 +30,6 @@ const More = () => {
           aria-labelledby="offcanvasScrollingLabel"
         >
           <div className="offcanvas-header">
-            
             <button
               type="button"
               className="btn-close"
@@ -35,7 +37,7 @@ const More = () => {
               aria-label="Close"
             ></button>
           </div>
-          <hr/>
+          <hr />
           <div className="offcanvas-body">
             <ul className="navbar-nav m-auto me-5 mb-2 mb-lg-0">
               <li className="nav-item">
@@ -47,27 +49,77 @@ const More = () => {
                   profile
                 </Link>
               </li>
-              <hr/>
-              <li className="nav-item">
-                <Link
-                  className="nav-link more-link"
-                  aria-current="page"
-                  to="/more/orders"
-                >
-                  My Orders
-                </Link>
-              </li>
-              <hr/>
-              <li className="nav-item">
-                <Link
-                  className="nav-link more-link"
-                  aria-current="page"
-                  to="/more/review"
-                >
-                  Add a review
-                </Link>
-              </li>
-              <hr/>
+              <hr />
+              {userInfo.role !== "admin" && (
+                <>
+                  <hr />
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link more-link"
+                      aria-current="page"
+                      to="/more/orders"
+                    >
+                      My Orders
+                    </Link>
+                  </li>
+                  <hr />
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link more-link"
+                      aria-current="page"
+                      to="/more/review"
+                    >
+                      Add a review
+                    </Link>
+                  </li>
+                  <hr />
+                </>
+              )}
+              {userInfo.role !== "admin" && (
+                <>
+                  <li className="navbar-nav m-auto me-5 mb-2 mb-lg-0">
+                    <Link
+                      className="nav-link more-link"
+                      aria-current="page"
+                      to="/more/addNewProduct"
+                    >
+                      Add a product
+                    </Link>
+                  </li>
+                  <hr />
+                  <li className="navbar-nav m-auto me-5 mb-2 mb-lg-0">
+                    <Link
+                      className="nav-link more-link"
+                      aria-current="page"
+                      to="/more/manageProducts"
+                    >
+                      Manage Products
+                    </Link>
+                  </li>
+                  <hr />
+                  <li className="navbar-nav m-auto me-5 mb-2 mb-lg-0">
+                    <Link
+                      className="nav-link more-link"
+                      aria-current="page"
+                      to="/more/manageOrders"
+                    >
+                      {" "}
+                      Manage Orders
+                    </Link>
+                  </li>
+                  <hr />
+                  <li className="navbar-nav m-auto me-5 mb-2 mb-lg-0">
+                    <Link
+                      className="nav-link more-link"
+                      aria-current="page"
+                      to="/more/manageUsers"
+                    >
+                      Manage Users
+                    </Link>
+                  </li>
+                  <hr />
+                </>
+              )}
             </ul>
           </div>
         </div>

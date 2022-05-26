@@ -19,7 +19,7 @@ const Tools = () => {
     <div className="mb-5">
       <h2 className="text-center mt-5 mb-5">Equipments</h2>
       <div className="cards">
-        {tools.slice(0, 3).map((tool) => (
+        {tools.reverse().slice(0, 3).map((tool) => (
           <div key={tool._id} className="single-card">
             <img className="img-tool" src={tool.img} alt="" />
             <div className="btn-tool-wrapper">

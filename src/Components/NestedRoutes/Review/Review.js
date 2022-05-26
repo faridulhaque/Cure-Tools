@@ -19,7 +19,7 @@ const Review = () => {
         email,
         img
     }
-    if(email && img){
+    if(reviewInfo){
         fetch(`http://localhost:5000/review/${email}`, {
                 method: 'PUT',
                 headers: {
@@ -27,6 +27,8 @@ const Review = () => {
                 },
                 body: JSON.stringify(reviewInfo)
             })
+            .then(res => res.json())
+            .then(data =>{})
     }
   };
 
