@@ -1,0 +1,34 @@
+.summary-img {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 400px;
+
+
+}
+
+.summary-info-container {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+}
+
+.summary-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+
+}
+.text-orange{
+    color: rgb(255,86,63);
+}
+.text-dim-orange{
+    color: white
+}
+.fa-people-group, .fa-people-carry-box, .fa-heart-circle-plus{
+    
+    color: rgb(255,86,63);
+    text-align: center;
+    font-size: 100px;
+}

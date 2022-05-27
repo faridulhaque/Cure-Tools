@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import AddProduct from "./AddProduct/AddProduct";
 import "./App.css";
 import EachTool from "./Components/EachTool/EachTool";
+import Footer from "./Components/Footer/Footer";
 import Home from "./Components/Home/Home";
 import LogIn from "./Components/LogIn/LogIn";
 import More from "./Components/More/More";
@@ -14,6 +15,7 @@ import ManageUsers from "./Components/NestedRoutes/ManageUsers/ManageUsers";
 import Orders from "./Components/NestedRoutes/Orders/Orders";
 import Profile from "./Components/NestedRoutes/Profile/Profile";
 import Review from "./Components/NestedRoutes/Review/Review";
+import NotFound from "./Components/NotFound/NotFound";
 import Register from "./Components/Register/Register";
 import RequireUser from "./Components/RequireAuth/RequireUser"
 
@@ -27,6 +29,7 @@ function App() {
 />
     <Navbar></Navbar>
     <Routes>
+      <Route path='*' element={<NotFound></NotFound>}></Route>
       <Route path="/" element={<Home></Home>}></Route>
       <Route path="/more" element={<More></More>}>
       <Route index element={<Profile></Profile>}></Route>
@@ -43,6 +46,7 @@ function App() {
       <Route path="/register" element={<Register></Register>}></Route>
       <Route path="/home/:eachTool" element={<RequireUser><EachTool></EachTool></RequireUser>}></Route>
     </Routes>
+    <Footer></Footer>
   </div>
 }
 
