@@ -5,17 +5,24 @@ import pic from "../assets/images/loginPic.png";
 import "./Login.css";
 import gLogo from "../assets/images/Google_icon.png";
 import { auth } from "../Firebase/firebase.init";
-import { useTheUser } from "../hooks/loggedInuser/useTheUser";
-import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
+import useToken from "../hooks/Token/useToken";
+import { useAuthState } from "react-firebase-hooks/auth";
 const provider = new GoogleAuthProvider();
 
 const LogIn = () => {
-  
-  
-  const location= useLocation();
+  const location = useLocation();
   const navigate = useNavigate();
+  
   let from = location.state?.from?.pathname || "/";
+  const [gUser, setGUser] = useState({});
   const [loginError, setLoginError] = useState("");
+  
 
   const {
     register,
@@ -27,34 +34,20 @@ const LogIn = () => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         const epUser = userCredential.user;
-        
+
         navigate(from, { replace: true });
       })
       .catch((error) => {
         setLoginError(error.message);
       });
   };
-  const signInWithGooglePopup = () =>{
+  const signInWithGooglePopup = () => {
     signInWithPopup(auth, provider)
-    .then((result) => {
-      
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      
-      const googleUser = result.user;
-      
-      navigate(from, { replace: true });
-      
-    }).catch((error) => {
-      
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      
-      const email = error.customData.email;
-      
-      const credential = GoogleAuthProvider.credentialFromError(error);
-    });
-  }
+      .then((result) => {
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {});
+  };
   return (
     <div className="login-main">
       <div style={{ width: "500px", height: "400px" }} className="login-img">

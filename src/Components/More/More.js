@@ -52,7 +52,7 @@ const More = () => {
               <hr />
               {userInfo.role !== "admin" && (
                 <>
-                  <hr />
+                  
                   <li className="nav-item">
                     <Link
                       className="nav-link more-link"
@@ -75,13 +75,13 @@ const More = () => {
                   <hr />
                 </>
               )}
-              {userInfo.role !== "admin" && (
+              {userInfo.role === "admin" && (
                 <>
                   <li className="navbar-nav m-auto me-5 mb-2 mb-lg-0">
                     <Link
                       className="nav-link more-link"
                       aria-current="page"
-                      to="/more/addNewProduct"
+                      to="/more/addProduct"
                     >
                       Add a product
                     </Link>

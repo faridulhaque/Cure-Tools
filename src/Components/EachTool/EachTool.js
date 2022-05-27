@@ -3,12 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./EachTool.css";
 import { useTheUser } from "../hooks/loggedInuser/useTheUser";
 import { Confirm } from "react-st-modal";
+import useUserInfo from "../hooks/useUserInfo/useUserInfo";
 const EachTool = () => {
   const navigate = useNavigate();
   const { eachTool } = useParams();
   const [tool, setTool] = useState({});
   const [error, setError] = useState("");
   const { user } = useTheUser();
+  const {userInfo} = useUserInfo();
 
   useEffect(() => {
     fetch(`http://localhost:5000/tool/${eachTool}`)
@@ -137,7 +139,7 @@ const EachTool = () => {
               <div className="et-input-wrapper">
                 <label className='et-label' htmlFor="uName">Your Name</label>
                 <br/>
-                <input className="et-input" name="uName" type="text" required />
+                <input defaultValue={userInfo.name} className="et-input" name="uName" type="text" required />
               </div>
               <div className="et-input-wrapper">
                 <label className='et-label' htmlFor="email">Your Email</label>
@@ -152,7 +154,7 @@ const EachTool = () => {
               <div className="et-input-wrapper">
                 <label className='et-label' htmlFor="address">Your Address</label>
                 <br/>
-                <textarea className="et-text-area" name="address" type="text" required />
+                <textarea value={user.address && user.address} className="et-text-area" name="address" type="text" required />
               </div>
               <div className="et-input-wrapper">
                 <button className="et-button-submit btn btn-danger" type="submit" disabled={error}>

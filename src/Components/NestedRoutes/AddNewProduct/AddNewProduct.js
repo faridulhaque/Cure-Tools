@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Alert } from "react-st-modal";
 import "./AddNewProduct.css";
 
 const AddNewProduct = () => {
@@ -20,9 +21,18 @@ const AddNewProduct = () => {
       description,
       img,
     };
+    const handleError = async () => {
+      await Alert('Please input a number above 0 for price and quantities', 'Opps');
+      window.location.reload(false);
+    }
+    const addingAlert = async () => {
+      await Alert('well done', 'Item successfully added');
+      window.location.reload(false)
+
+    }
 
     if (price <= 0 || avlQuantity <= 0 || minQuantity <= 0) {
-      alert("Please input a number above 0 for price and quantities");
+      handleError();
     } else {
         fetch('http://localhost:5000/tools',{
             method: 'POST',
@@ -33,7 +43,7 @@ const AddNewProduct = () => {
         })
         .then(res => res.json())
         .then(data =>{
-            
+          addingAlert();
         })
     }
   };

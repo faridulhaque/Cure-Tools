@@ -32,9 +32,9 @@ const Register = () => {
   
   let from = location.state?.from?.pathname || "/";
 
-  // if (newUser || gUser) {
-  //   navigate(from, { replace: true });
-  // }
+  if (newUser || gUser) {
+    navigate(from, { replace: true });
+  }
 
   // verify the user
   const emailVerify = () => {

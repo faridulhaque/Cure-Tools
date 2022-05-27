@@ -5,8 +5,11 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../Firebase/firebase.init";
 import { Confirm } from "react-st-modal";
 import toast from "react-hot-toast";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Orders = () => {
+  const params = useParams('id');
+  const navigate= useNavigate();
   const [user, setUser] = useState({});
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -29,6 +32,10 @@ const Orders = () => {
       .then((data) => {setOrders(data);
       });
   }, [orders]);
+
+  const handlePayment = (id) =>{
+    navigate(`/more/payment/${id}`);
+  }
 
   const handleDelete = async (id) => {
     const result = await Confirm("You can't undo this action.", 
@@ -72,13 +79,14 @@ const Orders = () => {
                 <td>{order.price}</td>
                 <td>{order.totalPrice}</td>
                 <td className='text-warning'>{order.payment}</td>
-                <td><button className='btn btn-success'>Pay now</button></td>
+                <td><button onClick={()=>handlePayment(order._id)} className='btn btn-success'>Pay now</button></td>
                 <td><button onClick={()=>handleDelete(order._id)} className='btn btn-danger'>Cancel</button></td>
               </tr>))
             }
           </tbody>
         </table>
       </div>
+      
     </div>
   );
 };

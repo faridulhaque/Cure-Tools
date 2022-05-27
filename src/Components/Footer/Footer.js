@@ -3,9 +3,12 @@ import './Footer.css'
 
 const Footer = () => {
     return (
-        <div className="footer">
+        <div className="">
+          <div style={{height: '50vh', backgroundColor: 'white'}}>
+
+</div>
              <div className="footer-top">
-        <div className="cure-tool-writing">Cure Tool</div>
+        <div className="cure-tool-writing">Cure Tools</div>
         <div className="icon-container">
           <i className="fa-brands fa-facebook-f"></i>
           <i className="fa-brands fa-google"></i>
@@ -34,7 +37,7 @@ const Footer = () => {
           </div>
         </div>
         <small className="copyright">
-          ©Cure Tool {new Date().getFullYear()}
+          ©Cure Tools {new Date().getFullYear()}
         </small>
       </div>
         </div>

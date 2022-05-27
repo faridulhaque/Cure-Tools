@@ -1,24 +1,33 @@
-.bg-light{
-    background-color: rgb(235,87,87) !important;
-    
+.bg-light {
+    background-color: rgb(235, 87, 87) !important;
+
 }
-.nav-link{
+
+.nav-link {
     color: white !important;
     display: flex !important;
     align-items: center !important;
     cursor: pointer;
-    
+
 }
-.navbar-brand{
+
+.navbar-brand {
     color: white !important;
     margin-left: 30px !important;
 }
-.nav-item{
+
+.nav-item {
     margin: 0 10px !important;
-    
+
 }
-.fa-right-to-bracket, .fa-arrow-up-right-dots, .fa-power-off{
+
+.fa-right-to-bracket,
+.fa-arrow-up-right-dots,
+.fa-power-off,
+.fa-book,
+.fa-address-card {
     color: white !important;
     margin-left: 5px;
     
+
 }

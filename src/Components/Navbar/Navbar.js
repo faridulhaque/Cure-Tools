@@ -7,15 +7,14 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const { user, loading } = useTheUser();
-  if(loading) {
-    return <div>loading</div>
+  if (loading) {
+    return <div>loading</div>;
   }
-  
 
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
-        Navigate('/');
+        Navigate("/");
       })
       .catch((error) => {});
   };
@@ -39,19 +38,31 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav m-auto me-5 mb-2 mb-lg-0">
-          <li className="nav-item">
-            {
-              user?.uid && <Link className="nav-link" aria-current="page" to="/more">
-              <span>More</span>{" "}
-              <i className="fa-solid fa-arrow-up-right-dots"></i>
-            </Link>
-            }
+            <li className="nav-item">
+              <Link className="nav-link" aria-current="page" to="/myPortfolio">
+                <span>My Portfolio</span>{" "}
+                <i class="fa-solid fa-address-card"></i>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" aria-current="page" to="/blog">
+                <span>Blog</span>{" "}
+                <i className="fa-solid fa-book"></i>
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              {user?.uid && (
+                <Link className="nav-link" aria-current="page" to="/more">
+                  <span>Dashboard</span>{" "}
+                  <i className="fa-solid fa-arrow-up-right-dots"></i>
+                </Link>
+              )}
             </li>
             <li className="nav-item">
               {user?.uid ? (
                 <a className="nav-link" onClick={handleLogout}>
-                  <span>Log Out</span>{" "}
-                  <i className="fa-solid fa-power-off"></i>
+                  <span>Log Out</span> <i className="fa-solid fa-power-off"></i>
                 </a>
               ) : (
                 <Link className="nav-link" aria-current="page" to="/logIn">
