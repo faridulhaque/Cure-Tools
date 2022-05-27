@@ -9,17 +9,15 @@ const ManageUsers = () => {
       .then((data) => setUsers(data));
   }, [users]);
 
-  
   const makeAnAdmin = (email) => {
-    
-    if(email){
-        fetch(`http://localhost:5000/user/admin/${email}`,{
-          method: 'PUT',
-        })
-        .then(res => res.json())
-        .then(data => console.log(data))
-    }
-    
+    fetch(`http://localhost:5000/user/admin/${email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
 
   return (
