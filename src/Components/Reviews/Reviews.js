@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import Icons from "./Icons";
 import './Review.css';
 
 const Reviews = () => {
   const [review, setReview] = useState([]);
   const [icon, setIcon] = useState('');
+  const [loading, setLoading] = useState(true)
   
   
   useEffect(() => {
@@ -12,8 +14,8 @@ const Reviews = () => {
       .then((data) => {
         setReview(data)
       });
-  }, []);
-  console.log(icon);
+  }, [review]);
+  
   return (
     <div className="reviews">
       <h2 className="text-center">Reviews</h2>
@@ -29,7 +31,8 @@ const Reviews = () => {
                 </span>
               </div>
               <div>
-                  <span>Rating: <b>{r.rating}</b></span>
+                
+                  <span><Icons rating={r.rating}></Icons></span>
               </div>
             </div>
             <div className="comment-reviews">

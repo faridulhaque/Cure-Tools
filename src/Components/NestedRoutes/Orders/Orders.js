@@ -66,8 +66,10 @@ const Orders = () => {
               <th scope="col">Price (per Unit)</th>
               <th scope="col">Total Price</th>
               <th scope="col">Payment Status</th>
+              <th scope="col">Transaction ID</th>
               <th scope="col">Payment</th>
               <th scope="col">Cancellation</th>
+
             </tr>
           </thead>
           <tbody>
@@ -78,9 +80,10 @@ const Orders = () => {
                 <td>{order.quantity} <sub>unit</sub></td>
                 <td>{order.price}</td>
                 <td>{order.totalPrice}</td>
-                <td className='text-warning'>{order.payment}</td>
-                <td><button onClick={()=>handlePayment(order._id)} className='btn btn-success'>Pay now</button></td>
-                <td><button onClick={()=>handleDelete(order._id)} className='btn btn-danger'>Cancel</button></td>
+                <td className={order.payment === 'paid' ? 'text-success' : 'text-warning'}>{order.payment}</td>
+                <td className='text-success'>{order.transaction}</td>
+                <td><button disabled={order.payment === 'paid'} onClick={()=>handlePayment(order._id)} className='btn btn-success'>Pay now</button></td>
+                <td><button disabled={order.payment === 'paid'} onClick={()=>handleDelete(order._id)} className='btn btn-danger'>Cancel</button></td>
               </tr>))
             }
           </tbody>

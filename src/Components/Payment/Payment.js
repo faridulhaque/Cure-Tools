@@ -7,7 +7,7 @@ const stripePromise = loadStripe('pk_test_51L3zbSHYptib3ECRXqn80aSoDZo6n2bun6iK9
 
 const Payment = () => {
     const [info, setInfo] = useState({})
-    console.log(info)
+    // console.log(info)
     
     const {id} = useParams();
     useEffect(() => {
@@ -20,7 +20,7 @@ const Payment = () => {
         <div className='container'>
             <div>
                 <h2 className='my-4 text-center'>payment</h2>
-                <h3 className='my-3'>Pay {info.price} for {info.name}</h3>
+                <h3 className='my-3'>Pay {info.price} for {info.product}</h3>
                 <div className='w-25'>
                 <Elements stripe={stripePromise}>
     <CheckOutForm info={info} />

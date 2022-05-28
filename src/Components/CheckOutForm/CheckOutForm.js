@@ -1,31 +1,38 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
+import { Alert } from "react-st-modal";
 
 const CheckOutForm = ({ info }) => {
   const [cardError, setCardError] = useState("");
   const [success, setSuccess] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  const { price, name } = info;
-useEffect(() => {
-    fetch('http://localhost:5000/create-payment-intent',{
-        method: 'POST',
-        headers: { 
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(price)
-    })
-    .then(res => res.json())
-    .then(data=>{
-        if(data?.client_secret){
-            setClientSecret(data.client_secret)
-        }
-        else{
+  const [processing, setProcessing] = useState(false);
+  const [transactionId, setTransactionId] = useState("");
+  const { price, name, email, _id } = info;
 
-        }
-    })
-},[price])
+  //sending payment update information to db
+
+  useEffect(() => {
+    if (price) {
+      fetch("http://localhost:5000/create-payment-intent", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ price }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data?.clientSecret) {
+            setClientSecret(data?.clientSecret);
+          } else {
+          }
+        });
+    }
+  }, [price]);
   const stripe = useStripe();
   const elements = useElements();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) {
@@ -35,37 +42,55 @@ useEffect(() => {
     if (card === null) {
       return;
     }
+
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
 
-    if (error) {
-      setCardError(error);
-    } else {
-      setCardError("");
-    }
-    const {paymentIntent, error: intentError} = await stripe.confirmCardPayment(
-      clientSecret,
-      {
+    setCardError(error?.message || "");
+    setSuccess("");
+    setProcessing(true);
+    const { paymentIntent, error: intentError } =
+      await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: card,
           billing_details: {
             name: name,
+            email: email,
           },
         },
-      },
-    );
-    if(intentError) {
+      });
+    if (intentError) {
       setCardError(intentError?.message);
-    }
-    else {
+      setProcessing(false);
+    } else {
       setCardError("");
+      setTransactionId(paymentIntent.id);
       console.log(paymentIntent);
-      setSuccess('successful')
+      await Alert("Your payment is successful.", "Congratulation!");
+      if(paymentIntent.id){
 
+        updatePayment(paymentIntent.id);
+      }
     }
-
+  };
+  const updatePayment = (trID) => {
+    const payment = "paid";
+    const transaction = trID;
+    const data = { payment, transaction };
+    if (payment && transaction) {
+      console.log(transaction)
+      fetch(`http://localhost:5000/order/payment/${_id}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((data) => {});
+    }
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -85,7 +110,11 @@ useEffect(() => {
           },
         }}
       />
-      <button className="mt-3 btn btn-success" type="submit" disabled={!stripe || !clientSecret}>
+      <button
+        className="mt-3 btn btn-success"
+        type="submit"
+        disabled={!stripe || !clientSecret}
+      >
         Pay
       </button>
     </form>

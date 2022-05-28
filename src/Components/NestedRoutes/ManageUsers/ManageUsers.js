@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Confirm } from "react-st-modal";
 
 const ManageUsers = () => {
@@ -9,17 +10,32 @@ const ManageUsers = () => {
       .then((data) => setUsers(data));
   }, [users]);
 
-  const makeAnAdmin = (email) => {
-    fetch(`http://localhost:5000/user/admin/${email}`, {
+  const makeAnAdmin = (id) => {
+    fetch(`http://localhost:5000/user/admin/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
       },
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {});
   };
 
+  const deleteAdmin = async (id) => {
+    const result = await Confirm("You can't undo this action.", 
+      'Are you sure?');
+    
+    if (result) {
+      const url = `http://localhost:5000/user/${id}`;
+      fetch(url, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          toast.success('Successfully deleted!',{id: 'deleteItem'})
+        });
+    }
+  };
   return (
     <div>
       <h2 className="text-center">Manage Users</h2>
@@ -30,7 +46,7 @@ const ManageUsers = () => {
               <th scope="col">Name</th>
               <th scope="col">Email</th>
               <th scope="col">Add an admin</th>
-              <th scope="col">Remove an admin</th>
+              <th scope="col">Remove a user</th>
             </tr>
           </thead>
           <tbody>
@@ -39,15 +55,20 @@ const ManageUsers = () => {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>
-                  <button
-                    onClick={() => makeAnAdmin(user.email)}
+                  <button disabled={user.role === 'admin'}
+                    onClick={() => makeAnAdmin(user._id)}
                     className="btn btn-success"
                   >
                     Add
                   </button>
                 </td>
                 <td>
-                  <button className="btn btn-danger">Remove</button>
+                  <button 
+                    onClick={()=>deleteAdmin(user._id)}
+                    className="btn btn-danger"
+                  >
+                    Remove
+                  </button>
                 </td>
               </tr>
             ))}

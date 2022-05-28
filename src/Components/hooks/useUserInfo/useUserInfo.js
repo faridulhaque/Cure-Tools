@@ -11,7 +11,7 @@ const useUserInfo = () => {
   const email = user?.email;
   
 
-  console.log(userInfo);
+  // console.log(userInfo);
   useEffect(() => {
     fetch(`http://localhost:5000/user/${email}`)
         .then(res => res.json())

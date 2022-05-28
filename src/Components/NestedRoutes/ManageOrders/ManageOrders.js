@@ -26,6 +26,21 @@ const ManageOrders = () => {
         });
     }
   }
+  const handleShipment =(id) =>{
+    const shipment = 'shipped';
+    const data = {shipment}
+    fetch(`http://localhost:5000/order/shipment/${id}`,{
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(data),
+    })
+    .then(res => res.json())
+    .then(data =>{
+      toast.success('Shipment successfully updated!',{id: 'shipment'})
+    })
+  }
 
   return (
     <div>
@@ -53,10 +68,10 @@ const ManageOrders = () => {
             <td>{order.quantity}</td>
             <td>{order.phone}</td>
             <td>{order.price}</td>
-            <td>{order.payment}</td>
-            <td>{order?.shipment ? order.shipment : 'pending'}</td>
-            <td><button className="btn btn-success">Shipped</button></td>
-            <td><button onClick={()=>handleDelete(order._id)} className="btn btn-danger">Cancel</button></td>
+            <td className={order.payment === 'paid' ? 'text-success' : 'text-danger'}>{order.payment}</td>
+            <td className={order.shipment === 'shipped' ? 'text-success' : 'text-warning'}>{order?.shipment ? order.shipment : 'pending'}</td>
+            <td><button disabled={order.payment !== 'paid' || order.shipment === 'shipped'} className="btn btn-success" onClick={()=>handleShipment(order._id)}>Shipped</button></td>
+            <td><button disabled={order.payment === 'paid'} onClick={()=>handleDelete(order._id)} className="btn btn-danger">Cancel</button></td>
 
           </tr>))
     }
