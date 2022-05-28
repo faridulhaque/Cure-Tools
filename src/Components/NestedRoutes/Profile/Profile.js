@@ -11,7 +11,7 @@ const Profile = () => {
   // } = useForm();
   const [edit, setEdit] = useState(false);
   const { userInfo } = useUserInfo();
-  // console.log(userInfo);
+  const avatar = "https://i.ibb.co/6YK1cXs/avatar.jpg";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,7 +51,7 @@ const Profile = () => {
         <div className="form-wrapper-profile">
           <form className="form-profile" onSubmit={handleSubmit}>
             <div className="img-wrapper-profile">
-              <img className='img-profile' src={userInfo.img} alt="avatar" />
+              <img className='img-profile' src={userInfo.img ? userInfo.img : avatar} alt="avatar" />
             </div>
             <div className="form-input-wrapper-profile">
               <label>Name :</label>{" "}
