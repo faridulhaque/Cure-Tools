@@ -7,7 +7,7 @@ const Tools = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/tools")
+    fetch("https://stormy-castle-15403.herokuapp.com/tools")
       .then((res) => res.json())
       .then((data) => setTools(data));
   }, []);

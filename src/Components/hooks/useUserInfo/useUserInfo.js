@@ -13,7 +13,7 @@ const useUserInfo = () => {
 
   // console.log(userInfo);
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${email}`)
+    fetch(`https://stormy-castle-15403.herokuapp.com/user/${email}`)
         .then(res => res.json())
         .then(data => {
           setUserInfo(data)

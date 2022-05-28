@@ -5,7 +5,7 @@ import { Confirm } from 'react-st-modal';
 const ManageProducts = () => {
     const [tools, setTools] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/tools')
+        fetch('https://stormy-castle-15403.herokuapp.com/tools')
         .then(res => res.json())
         .then(data=> setTools(data))
     },[tools])
@@ -15,7 +15,7 @@ const ManageProducts = () => {
           'Are you sure?');
         
         if (result) {
-          const url = `http://localhost:5000/tool/${id}`;
+          const url = `https://stormy-castle-15403.herokuapp.com/tool/${id}`;
           fetch(url, {
             method: "DELETE",
           })

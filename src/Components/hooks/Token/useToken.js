@@ -23,7 +23,7 @@ const useToken = (receivedUser) => {
         console.log(user)
         
         if(email && name && img){
-            fetch(`http://localhost:5000/user/${email}`, {
+            fetch(`https://stormy-castle-15403.herokuapp.com/user/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

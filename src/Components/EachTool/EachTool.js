@@ -13,7 +13,7 @@ const EachTool = () => {
   const {userInfo} = useUserInfo();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/tool/${eachTool}`)
+    fetch(`https://stormy-castle-15403.herokuapp.com/tool/${eachTool}`)
       .then((res) => res.json())
       .then((data) => {
         setTool(data);
@@ -58,7 +58,7 @@ const EachTool = () => {
     
   
     const postingData = () =>{
-      const url = 'http://localhost:5000/orders';
+      const url = 'https://stormy-castle-15403.herokuapp.com/orders';
       fetch(url,{
         method: 'POST',
         headers: {

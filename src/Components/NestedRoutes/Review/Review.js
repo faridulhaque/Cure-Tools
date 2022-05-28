@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import toast from "react-hot-toast";
 import useUserInfo from "../../hooks/useUserInfo/useUserInfo";
 import "./Review.css";
 
@@ -20,7 +21,7 @@ const Review = () => {
         img
     }
     if(reviewInfo){
-        fetch(`http://localhost:5000/review/${email}`, {
+        fetch(`https://stormy-castle-15403.herokuapp.com/review/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
@@ -28,7 +29,10 @@ const Review = () => {
                 body: JSON.stringify(reviewInfo)
             })
             .then(res => res.json())
-            .then(data =>{})
+            .then(data =>{
+              toast.success('Successfully added!',{id: 'review'})
+              document.getElementById('review').value='';
+            })
     }
   };
 
@@ -59,7 +63,7 @@ const Review = () => {
             </select> <span>out of 5</span>
           </div>
           <div className="text-area-wrapper-review">
-            <textarea name="review" className="text-area-review"></textarea>
+            <textarea id="review" name="review" className="text-area-review"></textarea>
             <div className="button-wrapper-review">
               <button type="submit" className="btn btn-danger mt-2">
                 Add Review

@@ -6,7 +6,7 @@ const ManageOrders = () => {
   const [orders, setOrders] = useState([]);
   console.log(orders);
   useEffect(() => {
-    fetch("http://localhost:5000/orders")
+    fetch("https://stormy-castle-15403.herokuapp.com/orders")
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, [orders]);
@@ -16,7 +16,7 @@ const ManageOrders = () => {
       'Are you sure?');
     
     if (result) {
-      const url = `http://localhost:5000/order/${id}`;
+      const url = `https://stormy-castle-15403.herokuapp.com/order/${id}`;
       fetch(url, {
         method: "DELETE",
       })
@@ -29,7 +29,7 @@ const ManageOrders = () => {
   const handleShipment =(id) =>{
     const shipment = 'shipped';
     const data = {shipment}
-    fetch(`http://localhost:5000/order/shipment/${id}`,{
+    fetch(`http://https://stormy-castle-15403.herokuapp.com/order/shipment/${id}`,{
       method: 'PUT',
       headers: {
         'content-type': 'application/json'

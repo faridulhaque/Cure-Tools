@@ -25,7 +25,7 @@ const Orders = () => {
 
   const [orders, setOrders] = useState([]);
   
-  const url = `http://localhost:5000/myOrders?email=${email}`;
+  const url = `https://stormy-castle-15403.herokuapp.com/myOrders?email=${email}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
@@ -42,7 +42,7 @@ const Orders = () => {
       'Are you sure?');
     
     if (result) {
-      const url = `http://localhost:5000/order/${id}`;
+      const url = `https://stormy-castle-15403.herokuapp.com/order/${id}`;
       fetch(url, {
         method: "DELETE",
       })

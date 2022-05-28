@@ -11,7 +11,7 @@ const Payment = () => {
     
     const {id} = useParams();
     useEffect(() => {
-        fetch(`http://localhost:5000/order/${id}`)
+        fetch(`https://stormy-castle-15403.herokuapp.com/order/${id}`)
         .then(res => res.json())
         .then(data => setInfo(data))
 

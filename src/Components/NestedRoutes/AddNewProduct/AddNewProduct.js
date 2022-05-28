@@ -34,7 +34,7 @@ const AddNewProduct = () => {
     if (price <= 0 || avlQuantity <= 0 || minQuantity <= 0) {
       handleError();
     } else {
-        fetch('http://localhost:5000/tools',{
+        fetch('https://stormy-castle-15403.herokuapp.com/tools',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

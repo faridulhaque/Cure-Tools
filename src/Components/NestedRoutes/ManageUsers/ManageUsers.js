@@ -5,13 +5,13 @@ import { Confirm } from "react-st-modal";
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://stormy-castle-15403.herokuapp.com/users")
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, [users]);
 
   const makeAnAdmin = (id) => {
-    fetch(`http://localhost:5000/user/admin/${id}`, {
+    fetch(`https://stormy-castle-15403.herokuapp.com/user/admin/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -26,7 +26,7 @@ const ManageUsers = () => {
       'Are you sure?');
     
     if (result) {
-      const url = `http://localhost:5000/user/${id}`;
+      const url = `https://stormy-castle-15403.herokuapp.com/user/${id}`;
       fetch(url, {
         method: "DELETE",
       })

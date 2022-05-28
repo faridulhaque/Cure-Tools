@@ -14,7 +14,7 @@ const CheckOutForm = ({ info }) => {
 
   useEffect(() => {
     if (price) {
-      fetch("http://localhost:5000/create-payment-intent", {
+      fetch("https://stormy-castle-15403.herokuapp.com/create-payment-intent", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -81,7 +81,7 @@ const CheckOutForm = ({ info }) => {
     const data = { payment, transaction };
     if (payment && transaction) {
       console.log(transaction)
-      fetch(`http://localhost:5000/order/payment/${_id}`, {
+      fetch(`https://stormy-castle-15403.herokuapp.com/order/payment/${_id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
