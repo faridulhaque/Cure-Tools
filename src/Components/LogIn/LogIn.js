@@ -18,7 +18,7 @@ const LogIn = () => {
   const [signInWithEmailAndPassword, genUser, genLoading, genError] =
     useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-  const [token] = useToken(gUser);
+  const [token] = useToken(gUser || genUser);
 
   let from = location.state?.from?.pathname || "/";
 
@@ -33,7 +33,7 @@ const LogIn = () => {
   const onSubmit = (data) => {
     signInWithEmailAndPassword(data.email, data.password);
   };
-  if (gLoading || genUser) {
+  if (gLoading || genLoading) {
     return <div>Loading...</div>;
   }
   if (gUser || genUser) {

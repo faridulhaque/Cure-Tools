@@ -5,7 +5,12 @@ import { Confirm } from "react-st-modal";
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    fetch("https://stormy-castle-15403.herokuapp.com/users")
+    fetch("https://stormy-castle-15403.herokuapp.com/users",{
+      method: 'GET',
+      headers: {
+        'authorization': `Bearer: ${localStorage.getItem('accessToken')}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, [users]);

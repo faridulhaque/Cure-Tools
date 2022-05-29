@@ -4,7 +4,7 @@ import { Confirm } from "react-st-modal";
 
 const ManageOrders = () => {
   const [orders, setOrders] = useState([]);
-  console.log(orders);
+  
   useEffect(() => {
     fetch("https://stormy-castle-15403.herokuapp.com/orders")
       .then((res) => res.json())
