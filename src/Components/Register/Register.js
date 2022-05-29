@@ -17,6 +17,8 @@ import { auth } from "../Firebase/firebase.init";
 //   sendEmailVerification,
 // } from "firebase/auth";
 import useToken from "../hooks/Token/useToken";
+import Loading from "../hooks/Admin/Loading/Loading";
+import { sendEmailVerification } from "firebase/auth";
 
 // main functional work started
 const Register = () => {
@@ -36,24 +38,24 @@ const Register = () => {
   const navigate = useNavigate();
 
   let from = location.state?.from?.pathname || "/";
-  if (genLoading || gLoading) {
-    return <p>Loading...</p>;
+  if (genLoading || gLoading || updating) {
+    return <Loading></Loading>;
   }
 
   if (token) {
+    
     navigate(from, { replace: true });
   }
 
   // verify the user
-  // const emailVerify = () => {
-  //   sendEmailVerification(auth.currentUser).then(() => {});
-  // };
+ 
 
   //getting newUser's data via react form hooks
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
 
     await updateProfile({ displayName: data.name });
+    
   };
 
   return (

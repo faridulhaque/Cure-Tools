@@ -1,6 +1,7 @@
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../Firebase/firebase.init";
+import Loading from "../hooks/Admin/Loading/Loading";
 import useAdmin from "../hooks/Admin/useAdmin";
 
 const RequireUser = ({ children }) => {
@@ -10,7 +11,7 @@ const RequireUser = ({ children }) => {
   
   let location = useLocation();
   if (loading || adminLoading) {
-    return <p>Loading....</p>;
+    return <Loading></Loading>;
   }
   if (!user) {
     return <Navigate to="/logIn" state={{ from: location }} replace />;

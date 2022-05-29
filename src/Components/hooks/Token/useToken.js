@@ -7,7 +7,7 @@ const useToken = (receivedUser) => {
 
   useEffect(() => {
     const email = receivedUser?.user?.email;
-    const name = receivedUser?.user?.displayName || "user";
+    const name = receivedUser?.user?.displayName ? receivedUser?.user?.displayName : "user";
     const img = receivedUser?.user?.photoURL
       ? receivedUser?.user?.photoURL
       : avatar;

@@ -11,6 +11,7 @@ import {
 } from "react-firebase-hooks/auth";
 
 import useToken from "../hooks/Token/useToken";
+import Loading from "../hooks/Admin/Loading/Loading";
 
 const LogIn = () => {
   const location = useLocation();
@@ -34,7 +35,7 @@ const LogIn = () => {
     signInWithEmailAndPassword(data.email, data.password);
   };
   if (gLoading || genLoading) {
-    return <div>Loading...</div>;
+    return <Loading></Loading>;
   }
   if (token) {
     navigate(from, { replace: true });
