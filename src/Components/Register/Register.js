@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import "./Register.css";
 import { useForm } from "react-hook-form";
 import pic from "../assets/images/reg-pic.png";
 import gLogo from "../assets/images/Google_icon.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAuthState, useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useAuthState,
+  useCreateUserWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
+import { useUpdateProfile } from "react-firebase-hooks/auth";
 import { auth } from "../Firebase/firebase.init";
 
-import {
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
-} from "firebase/auth";
+// import {
+//   createUserWithEmailAndPassword,
+//   sendEmailVerification,
+// } from "firebase/auth";
 import useToken from "../hooks/Token/useToken";
-import { useUpdateProfile } from 'react-firebase-hooks/auth';
-
 
 // main functional work started
 const Register = () => {
@@ -22,39 +25,35 @@ const Register = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const [createUserWithEmailAndPassword, genUser, genLoading, error] =
+    useCreateUserWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
-  const [newUser, setNewUser] = useState({});
-  const [token] = useToken(gUser || newUser);
+  
+  const [token] = useToken(gUser || genUser);
 
   const location = useLocation();
   const navigate = useNavigate();
-  
-  let from = location.state?.from?.pathname || "/";
 
-  if (newUser || gUser) {
+  let from = location.state?.from?.pathname || "/";
+  if (genLoading || gLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (genUser || gUser) {
     navigate(from, { replace: true });
   }
 
   // verify the user
-  const emailVerify = () => {
-    sendEmailVerification(auth.currentUser).then(() => {});
-  };
+  // const emailVerify = () => {
+  //   sendEmailVerification(auth.currentUser).then(() => {});
+  // };
 
   //getting newUser's data via react form hooks
   const onSubmit = async (data) => {
-    
-    await createUserWithEmailAndPassword(auth, data.email, data.password)
-      .then((userCredential) => {
-        const user = userCredential.user;
+    await createUserWithEmailAndPassword(data.email, data.password);
 
-        setNewUser(user);
-        emailVerify();
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-      });
-      await updateProfile({displayName: data.name});
+    await updateProfile({ displayName: data.name });
   };
 
   return (
@@ -90,11 +89,11 @@ const Register = () => {
                 required: {
                   value: true,
                   message: "Name is required",
-                }
+                },
               })}
             />
             <small className="text-danger">
-              {(errors.name?.type === "required" && "Name is required")}
+              {errors.name?.type === "required" && "Name is required"}
             </small>
           </div>
           <div className="input-wrapper">

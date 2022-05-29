@@ -18,7 +18,9 @@ const ManageUsers = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => {});
+      .then((data) => {
+        toast.success('Added an admin successfully!',{id: 'deleteItem'})
+      });
   };
 
   const deleteAdmin = async (id) => {

@@ -20,17 +20,17 @@ const WorkWithUs = () => {
               <div className="wwu-input-wrapper">
                 <label className="wwu-label">Your Name</label>
                 <br />
-                <input className="wwu-input" type="text" />
+                <input required className="wwu-input" type="text" />
               </div>
               <div className="wwu-input-wrapper">
-                <label className="wwu-label">Your Name</label>
+                <label className="wwu-label">Your Email</label>
                 <br />
-                <input className="wwu-input" type="text" />
+                <input required className="wwu-input" type="text" />
               </div>
               <div className="wwu-input-wrapper">
-                <label className="wwu-label">Your Name</label>
+                <label className="wwu-label">Your Phone No.</label>
                 <br />
-                <input className="wwu-input" type="text" />
+                <input required className="wwu-input" type="text" />
               </div>
               <div className="wwu-input-wrapper">
                 <input className="wwu-button" type="button" value="submit" />

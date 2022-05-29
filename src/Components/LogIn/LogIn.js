@@ -5,24 +5,24 @@ import pic from "../assets/images/loginPic.png";
 import "./Login.css";
 import gLogo from "../assets/images/Google_icon.png";
 import { auth } from "../Firebase/firebase.init";
-
 import {
-  GoogleAuthProvider,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-} from "firebase/auth";
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
+
 import useToken from "../hooks/Token/useToken";
-import { useAuthState } from "react-firebase-hooks/auth";
-const provider = new GoogleAuthProvider();
 
 const LogIn = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  
+  const [signInWithEmailAndPassword, genUser, genLoading, genError] =
+    useSignInWithEmailAndPassword(auth);
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [token] = useToken(gUser);
+
   let from = location.state?.from?.pathname || "/";
-  const [gUser, setGUser] = useState({});
+
   const [loginError, setLoginError] = useState("");
-  
 
   const {
     register,
@@ -31,23 +31,14 @@ const LogIn = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    signInWithEmailAndPassword(auth, data.email, data.password)
-      .then((userCredential) => {
-        const epUser = userCredential.user;
-
-        navigate(from, { replace: true });
-      })
-      .catch((error) => {
-        setLoginError(error.message);
-      });
+    signInWithEmailAndPassword(data.email, data.password);
   };
-  const signInWithGooglePopup = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        navigate(from, { replace: true });
-      })
-      .catch((error) => {});
-  };
+  if (gLoading || genUser) {
+    return <div>Loading...</div>;
+  }
+  if (gUser || genUser) {
+    navigate(from, { replace: true });
+  }
   return (
     <div className="login-main">
       <div style={{ width: "500px", height: "400px" }} className="login-img">
@@ -123,7 +114,7 @@ const LogIn = () => {
           </div>
         </form>
         <div>
-          <button onClick={signInWithGooglePopup} className="g-button">
+          <button onClick={() => signInWithGoogle()} className="g-button">
             <img
               style={{ width: "25px", height: "25px" }}
               src={gLogo}

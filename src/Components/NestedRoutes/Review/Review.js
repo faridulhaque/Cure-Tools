@@ -5,7 +5,7 @@ import "./Review.css";
 
 const Review = () => {
   const { userInfo } = useUserInfo();
-  
+  const avatar = "https://i.ibb.co/6YK1cXs/avatar.jpg";
   const handleReview = (e) => {
       e.preventDefault();
     const rating = e.target.rating.value;
@@ -44,7 +44,7 @@ const Review = () => {
         <form onSubmit={handleReview}>
           <div className="user-name-review">
             <span>as</span>
-            <img className='profile-pic-review' src={userInfo.img} alt='avatar'/>
+            <img className='profile-pic-review' src={userInfo.img ? userInfo.img : avatar} alt='avatar'/>
             <input
               name="user"
               className="user-name-review-input"
