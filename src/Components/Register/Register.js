@@ -40,7 +40,7 @@ const Register = () => {
     return <p>Loading...</p>;
   }
 
-  if (genUser || gUser) {
+  if (token) {
     navigate(from, { replace: true });
   }
 

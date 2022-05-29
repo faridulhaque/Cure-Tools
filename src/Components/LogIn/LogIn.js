@@ -36,7 +36,7 @@ const LogIn = () => {
   if (gLoading || genLoading) {
     return <div>Loading...</div>;
   }
-  if (gUser || genUser) {
+  if (token) {
     navigate(from, { replace: true });
   }
   return (

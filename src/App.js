@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import Blog from "./Components/Blog/Blog";
+import Denied from "./Components/Denied/Denied";
 import EachTool from "./Components/EachTool/EachTool";
 import Footer from "./Components/Footer/Footer";
 import Home from "./Components/Home/Home";
@@ -21,7 +22,9 @@ import NotFound from "./Components/NotFound/NotFound";
 import Payment from "./Components/Payment/Payment";
 import Register from "./Components/Register/Register";
 import RequireAdmin from "./Components/RequireAuth/RequireAdmin";
+import RequireCommon from "./Components/RequireAuth/RequireCommon/RequireCommon";
 import RequireUser from "./Components/RequireAuth/RequireUser";
+
 
 function App() {
   return (
@@ -32,7 +35,7 @@ function App() {
         <Route path="*" element={<NotFound></NotFound>}></Route>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/more" element={<More></More>}>
-          <Route index element={<RequireUser><Profile></Profile></RequireUser>}></Route>
+          <Route index element={<RequireCommon><Profile></Profile></RequireCommon>}></Route>
           <Route path="review" element={<RequireUser><Review></Review></RequireUser>}></Route>
           <Route
             path="orders"
@@ -46,23 +49,23 @@ function App() {
           <Route path="payment/:id" element={<RequireUser><Payment></Payment></RequireUser>}></Route>
           <Route
             path="manageUsers"
-            element={<RequireUser><ManageUsers></ManageUsers></RequireUser>}
+            element={<RequireAdmin><ManageUsers></ManageUsers></RequireAdmin>}
           ></Route>
           <Route
             path="addProduct"
             element={
-              <RequireUser>
+              <RequireAdmin>
                 <AddNewProduct></AddNewProduct>
-              </RequireUser>
+              </RequireAdmin>
             }
           ></Route>
           <Route
             path="manageProducts"
-            element={<RequireUser><ManageProducts></ManageProducts></RequireUser>}
+            element={<RequireAdmin><ManageProducts></ManageProducts></RequireAdmin>}
           ></Route>
           <Route
             path="manageOrders"
-            element={<RequireUser><ManageOrders></ManageOrders></RequireUser>}
+            element={<RequireAdmin><ManageOrders></ManageOrders></RequireAdmin>}
           ></Route>
         </Route>
 
@@ -73,11 +76,12 @@ function App() {
         <Route
           path="/home/:eachTool"
           element={
-            <RequireUser>
+            <RequireCommon>
               <EachTool></EachTool>
-            </RequireUser>
+            </RequireCommon>
           }
         ></Route>
+        <Route path="/denied" element={<Denied></Denied>}></Route>
       </Routes>
       <Footer></Footer>
     </div>
