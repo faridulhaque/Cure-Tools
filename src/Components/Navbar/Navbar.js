@@ -6,6 +6,7 @@ import { useTheUser } from "../hooks/loggedInuser/useTheUser";
 import "./Navbar.css";
 
 const Navbar = () => {
+  const navigate = useNavigate()
   const { user, loading } = useTheUser();
   if (loading) {
     return <div>loading</div>;
@@ -15,7 +16,7 @@ const Navbar = () => {
     signOut(auth)
       .then(() => {
         localStorage.removeItem('accessToken')
-        Navigate("/");
+        navigate("/");
       })
       .catch((error) => {});
   };

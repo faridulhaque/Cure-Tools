@@ -33,6 +33,7 @@ const Register = () => {
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   
   const [token] = useToken(gUser || genUser);
+  console.log(genUser)
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -52,9 +53,10 @@ const Register = () => {
 
   //getting newUser's data via react form hooks
   const onSubmit = async (data) => {
+    const newName = data.name;
     await createUserWithEmailAndPassword(data.email, data.password);
 
-    await updateProfile({ displayName: data.name });
+    await updateProfile({ displayName: newName });
     
   };
 

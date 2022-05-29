@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 
 const useToken = (receivedUser) => {
   const [token, setToken] = useState("");
-
   const avatar = "https://i.ibb.co/6YK1cXs/avatar.jpg";
+  const email = receivedUser?.user?.email;
+  const name = receivedUser?.user?.displayName;
+
+  const img = receivedUser?.user?.photoURL
+    ? receivedUser?.user?.photoURL
+    : avatar;
 
   useEffect(() => {
-    const email = receivedUser?.user?.email;
-    const name = receivedUser?.user?.displayName ? receivedUser?.user?.displayName : "user";
-    const img = receivedUser?.user?.photoURL
-      ? receivedUser?.user?.photoURL
-      : avatar;
     // const role = 'admin';
     const user = {
       email,
@@ -34,7 +34,7 @@ const useToken = (receivedUser) => {
           console.log(data);
         });
     }
-  }, [receivedUser]);
+  }, [email, name, img]);
   return [token];
 };
 export default useToken;
