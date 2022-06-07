@@ -22,3 +22,10 @@
     transition: background-color 0.8s;
     
 }
+@media only screen and (max-width: 570px) {
+    .banner-text{
+        left: 5%;
+        width: 90%;
+        font-size: auto;
+    }
+  }

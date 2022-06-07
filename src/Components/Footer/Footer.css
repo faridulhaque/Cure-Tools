@@ -44,3 +44,8 @@
     color: white;
     margin-left: 40px;
 }
+@media only screen and (max-width: 570px) {
+    .footer-bottom{
+        height: 150px;
+    }
+  }

@@ -28,6 +28,22 @@
 .fa-address-card {
     color: white !important;
     margin-left: 5px;
-    
 
+
+}
+
+@media only screen and (max-width: 570px) {
+    .nav-link {
+        font-size: auto;
+    }
+
+    .fa-right-to-bracket,
+    .fa-arrow-up-right-dots,
+    .fa-power-off,
+    .fa-book,
+    .fa-address-card {
+        display: none;
+
+
+    }
 }

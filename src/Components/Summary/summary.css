@@ -32,3 +32,8 @@
     text-align: center;
     font-size: 100px;
 }
+@media only screen and (max-width: 570px) {
+    .summary{
+      display: none;
+    }
+  }
