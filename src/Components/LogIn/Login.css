@@ -3,7 +3,11 @@
     align-items: center;
     width: 90%;
     margin-left: 5%;
+    margin-right: 5%;
     margin-top: 50px;
+}
+.login-img{
+    width: 400px;
 }
 .login-form-container{
     
@@ -37,3 +41,19 @@
     margin-bottom: 10px;
     
 }
+
+@media only screen and (max-width: 570px) {
+    
+    .login-img{
+        display: none;
+    }
+    .login-form-container{
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 95%;
+    }
+    .login-input-wrapper{
+        margin-top: 30px;
+        width: 225px;
+    }
+  }

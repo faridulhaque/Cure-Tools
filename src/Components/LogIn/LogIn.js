@@ -42,7 +42,7 @@ const LogIn = () => {
   }
   return (
     <div className="login-main">
-      <div style={{ width: "500px", height: "400px" }} className="login-img">
+      <div className="login-img">
         <img
           style={{ width: "100%", height: "100%" }}
           src={pic}
